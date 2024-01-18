@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="sample.css">
+    </head> 
+<body>
+    <p class="A"> unanticipated context. In the following we describe several approaches that aim in this
+ direction
+    </p>
+<h1 class="A">Augmenting Document Sets with Context</h1><hr class="A B">
+<h2 class="A"style="font-size:160%;"><i><sub>Text Categorization</sub></i></h2><hr class="A">
+<p class="A"> One way to add context to a document is by assigning a meaningful label to it (Le &
+ Thoma, 2003). This constitutes a task of text categorization and there exist numerous
+ algorithms that can be applied. The general approach is to select a training set of
+ documents that are already labelled. Based on the “bag of words” representation,
+ machine learning methods learn the association of category labels to documents. For an
+ in depth review of statistical approaches (such as naives Bayes or decision trees) see
+ Yang (1999). Computationally more advanced methods utilize artificial neural network
+ architectures such as the support vector machine which have achieved break even values
+    close to 0.9 for the labelling of news wire articles (Joachims, 1998; Lodhi, 2001).</p>
+    <p class="A">
+ However, in the medical domain, 100 categories are seldom adequate to describe the
+ context of a text. In case of the MEDLINE database, the National Library of Medicine has
+ developed a highly standardized vocabulary, the Medical Subject Headings (MeSH)
+ (Lowe & Barnett, 1994). They consist of more than 35,000 categories that are hierarchi
+cally organized and constitute the basis for searching the database. To guarantee
+ satisfactory search results of constant quality, reproducible labels are an important
+ prerequisite. However, the cost of human indexing of the biomedical literature is high:
+ according to Humphrey (1992) it takes one year to train an expert the task of document
+ labelling. Additionally, the labelling process lacks a high degree of reproducibility. Funk,
+ Reid, and McGoogan (1983) have reported a mean agreement in index terms ranging from
+ 74 percent down to as low as 33 percent for different experts. Because the improvement
+ of index consistency is such demanding, assistance systems are considered to be a
+ substantial benefit. Recently, Aronson, Bodenreider, Chang, Humphrey, Mork, Nelson,
+ Rindflesh, and Wilbur (2000) have presented a highly tuned and sophisticated system
+ which yields very promising results. Additionally to the bag of words model their system
+ utilizes a semantic network describing a rich ontology of biomedical knowledge (Kashyap,
+ 2003).</p>
+<p class="A"> Unfortunately, the high complexity of the MeSH terms makes it hard to incorporate a
+ MeSH-based categorization into a user interface. When navigating the results of a
+ hierarchically ordered answer set it can be a time-consuming and frustrating process:
+ Items which are hidden deep within the hierarchy can often only be obtained by
+ descending a tree with numerous mouse-clicks. Selection of a wrong branch requires
+ backing up and trying a neighboring branch. Since screen space is a limited resource only
+ a small area of context is visible and requires internal “recalibration” each time a new
+ branch is selected. To overcome this problem, focus and context techniques are
+ considered to be of high value. These are discussed in more detail below</p><br>
+    <i class="A">The Cluster Hypothesis</i><hr class="A">
+    <p class="A">
+     An often cited statement is the cluster hypothesis, which states that documents which
+ are similar in their bag of words feature space tend to be relevant to the same request (van
+ Rijsbergen, 1979). Leuski (2001) has conducted an experiment where an agglomerative
+ clustering method was used to group the documents returned by a search engine query.
+ He presented the user not with a ranked list of retrieved documents, but with a list of
+ clusters, where each cluster in turn was arranged as a list of documents. The experiment
+ showed, that this procedure “can be much more helpful in locating the relevant
+ information than the traditional ranked list.” He could even show that the clustering can
+ be as effective as the relevance feedback methods based on query expansion. Other
+ experiments also validated the cluster hypothesis on several occasions (Hearst &
+ Pedersen, 1996; Zamir & Etzioni, 1999). Recently the vivisimo2 search engine has drawn
+ attention by utilizing an online clustering of retrieval sets, which also includes an
+ interface to PubMed / MEDLINE.</p>
+    <b class="A"style="font-size:160%;"> Visualizing Context</b><hr class="A B">
+    <p class="A"> Another way to create context in line with the spirit of the cluster hypothesis is by
+ embedding the document space in a visual display. By making the relationship between
+ documents visually more explicit, such that the user can actually see inter-document
+ similarities, the user gets (i) an overview of the whole collection, and (ii) once a relevant
+ document has been found, it is easier to locate others, as these tend to be grouped within
+ the surrounding context of already identified valuable items. Fabrikant and Buttenfield
+ (2001) provide a more theoretical framework for the concept of “spatialization” with
+ relation to cognitive aspects and knowledge acquisitions: Research on the cognition of
+ geographic information has been identified as being important in decision making,
+ planning and other areas involving human-related activities in space.
+ In order to make use of “spatialization”, that is, to use cognitive concepts such as
+ “nearness” we need to apply some sort of transformation to project the documents from</p>
+    <img  class="C A"src="C:\Users\91789\Desktop\HTML\ig1.png">
+    <p class="A"> their high-dimensional (typically several thousands) bag-of-words space onto a two
+ dimensional canvas suitable for familiar inspection and interaction. The class of algo
+rithms performing such a projection is called multi dimensional scaling (MDS). A large
+ number of MDS methods such as Sammon mapping, spring models, projection pursuit
+ or local linear embeddings have been proposed over the years. Skuping and Fabrikant
+ (2003) provide an excellent discussion of the most common MDS variants in relation to
+ spatialized information visualization.</p>
+    <i class="A"> Self-Organizing Maps</i><hr class="A">
+    <p class="A"> The notion of the self-organizing map (SOM) has been introduced by Kohonen (1982)
+ more than 20 years ago. Since then is has become a well-accepted tool for exploratory data
+ analysis and classification. While applications of the SOM are extremely wide spread—
+ ranging from medical imaging, classification of power consumption profiles, or bank
+ fraud detection—the majority of uses still follows its original motivation: to use a
+ deformable template to translate data similarities into spatial relations.</p>
+    <p class="A"> The following example uses a simple toy dataset to demonstrate the properties of the
+ SOM algorithm. Consider a 13-dimensional dataset describing animals with properties
+ such as small, medium, big, two legs, hair, hooves, can fly, can swim, and so on. When
+ displaying the data as a large table, it is quite cumbersome to see the inter-relationship
+ between the items, that is, animals. The map shown in Figure 1 depicts a trained SOM with
+ neurons placed on a 20x20 regular grid. After the training process, each animal is
+ “presented” to the map, and the neuron with the highest activity gets labelled with the
+ corresponding name. As can be seen in the figure the SOM achieves a semantically
+ reasonable mapping of the data to a two-dimensional “landscape”: birds and non-birds
+ are well separated and animals with identical features get mapped to identical nodes.</p>
+     <p class="A">There have been several approaches to use the SOM to visualize large text databases and
+ relations of documents therein. The most prominent example is the WEBSOM project.
+ Kohonen, Kaski and Lagus, (2000) performed the mapping of 7 million patent abstracts
+ and obtained a semantic landscape of the corresponding patent information. However,
+ screen size is a very limited resource, and as the example with 400 neurons above
+ suggests, a network with more than one million nodes—2500 times that size—becomes
+ hard to visualize: When displaying the map as a whole, annotations will not be readable,
+ and when displaying a legible subset, important surrounding context will be lost. Wise
+ (1999) has impressively demonstrated the usefulness of compressed, map-like represen
+tations of large text collections: His ThemeView reflects major topics in a given area, and
+ a zoom function provides a means to magnify selected portions of the map—unfortu
+nately without a coarser view to the surrounding context.</p><br>
+    <i class="A"> Focus & Context Techniques</i><hr class="A B">
+    <p class="A"> The limiting factor is the two dimensional Euclidean space we use as a data display: The
+ neighborhood that “fits” around a point is rather restricted: namely by the square of the
+ distance to that point. An interesting loophole is offered by hyperbolic space: it is</p>
+    <p class="A"> Figure 2. Navigation snapshot showing isometric transformation of HSOM tessellation.
+ The three images were acquired while moving the focus from the center of the map to
+ the highlighted region at the outer perimeter. Note the “fish-eye” effect: All triangles
+ are congruent, but appear smaller as further they are away from the focus.</p>
+    <img class="C A"src="C:\Users\91789\Desktop\HTML\ig2.png">
+    <p class="A"> characterized by uniform negative curvature and results in a geometry, where the
+ neighborhood around a point increases exponentially with the distance. This exponen
+tial behavior was firstly exploited (and patented) by the “hyperbolic tree browser” from
+ Lamandpng & Rao (1994), followed by a Web content viewer by Munzner (1998). Studies
+ by Pirolli, Card and van der Wege (2001) showed that the particular focus & context
+ property offered by hyperbolic space can significantly accelerate “information foraging”.</p>
+    <p class="A"> Naturally, it becomes apparent to combine the SOM algorithm with the favorable
+ properties of hyperbolic space (Ritter, 1999). The core idea of the hyperbolic self
+organizing map (HSOM) is to employ a grid of nodes in the hyperbolic plane H2. For H2
+ there exists an infinite number of tessellations with congruent polygons such that each
+ grid point is surrounded by the same number of neighbors (Magnus, 1974). As stated
+ above, an intuitive navigation and interaction methodology is a crucial element for a well
+fitted visualization framework. By utilizing the Poincaré projection and the set of Möbius
+ transformations (Coxeter, 1957) a “fish-eye” fovea can be positioned on the HSOM grid
+ allowing an intuitive interaction methodology. Nodes within the fovea are displayed with
+ high resolution, whereas the surrounding context is still visible in a coarser view. For
+ further technical details of the HSOM see (Ritter, 1999; Ontrup & Ritter, 2001). An example
+ for the application of the fish-eye view is given in Figure 2. It shows a navigation
+ sequence where the focus was moved towards the highlighted region of interest. Note,
+ that from the left to the right details in the target area get increasingly magnified, as the
+ highlighted region occupies more and more display space. In contrast to standard zoom
+ operations, the current surrounding context is not clipped, but remains gradually
+ compressed at the periphery of the field of view. Since all operations are continuous, the
+ focus can be positioned in a smooth and natural way.</p>
+    <i class="A"> Browsing MEDLINE in Hyperbolic Space</i><hr class="A B">
+    <p class="A"> The following example presents a HSOM framework that combines the aspects of
+ information retrieval, context enrichment and intuitive navigation into a single applica
+tion. The following images show a two dimensional HSOM, where the nodes are arranged
+ on a regular grid consisting of triangles similar to those in Figure 2. The HSOM’s neurons</p><br>
+    <p class="A"> can be regarded as “containers” holding those documents for which the corresponding
+ neuron is “firing” with the highest rate. These containers are visualized as cylinders
+ embedded in the hyperbolic plane. We can then use visual attributes of these containers
+ and the plane to reflect document properties and make context information explicit:</p>
+    <ul class="A">
+        <li>The container sizes reflect the number of documents situated in the corresponding
+ neuron.</li>
+        <li>A color scale reflects the number of documents which are labelled with terms from
+ the Anatomy hierarchy of MeSH terms, i.e. the brighter a container is rendered, the
+ more articles labelled with Anatomy MeSH entries reside within that node.</li>
+        <li>The color of the ground plane reflects the average distance to neighboring nodes
+ in the semantic bag-of-words space. This allows the identification of thematic
+ clusters within the map.</li>
+    </ul><br>
+    <p class="A"> Figure 3 shows a HSOM that was trained with approximately 25,000 abstracts from
+ MEDLINE. The interface is split into two components: the graphical map depicted below
+ and a user interface for formulating queries (not shown here). In the image below, the user
+ has entered the search string “brain”. Subsequent to the query submission, the system
+ highlights all nodes belonging to abstracts containing the word “brain” by elevating
+ their corresponding nodes. Additionally the HSOM prototype vectors—which were
+ autonomously organized by the system during a training phase—are used to generate
+ a key word list which annotate and semantically describe the node with the highest hit
+ rate. To this end, the words corresponding to the five largest components of the reference
+ vector are selected. In our example these are: brain, perfusion, primari, neuron, and
+ injuri. In the top left the most prominent MeSH terms are displayed, that is, 34 articles</p>
+<img class="C A"src="C:\Users\91789\Desktop\HTML\ig3.png">   
+</body>
+</html>
+
+
+
